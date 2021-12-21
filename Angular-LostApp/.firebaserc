@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lostapp-2451d": {
+      "hosting": {
+        "angular-losty": [
+          "lostapp-2451d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lostapp-2451d"
+  }
+}

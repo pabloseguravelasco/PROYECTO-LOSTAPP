@@ -1,0 +1,55 @@
+<body>
+<div class =first-box>
+<mat-form-field appearance="fill">
+  <mat-label>Categorias</mat-label>
+  <mat-select name="tipo" [(ngModel)]="tipo">
+    <mat-option value="Perdido">
+      Encontrado
+    </mat-option>
+    <mat-option value="Encontrado">
+      Perdido
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<br>
+<mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput name="name" [(ngModel)]="newItems">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Objeto</mat-label>
+    <mat-select Name="id" [(ngModel)]="id">
+      <mat-option *ngFor="let categoria of firebaseList" [value]="categoria.Name">
+        {{categoria.Name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción</mat-label>
+    <textarea  matInput  name="descripcion" [(ngModel)]="descripcion"></textarea>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary"(click)="addItem()">Añadir Objeto</button>
+</div>
+<div class =second-box>
+  <mat-label>Latitud y Longitud</mat-label>
+  <br>
+  <input class="location"  type="text"  [(ngModel)]="address" /> 
+  <br>
+  <br>
+  <button mat-raised-button color="primary" (click)="searchAddress()">Localizar</button>
+  <br>
+  <br>
+  <div *ngIf="apiLoaded | async">
+      <google-map
+        [center]="fundacionDonBoscoLatLng">
+        <map-marker
+                (mapDragend)="updateLocationMarker($event)"
+                [position]="fundacionDonBoscoLatLng"
+                [options]="markerOptions"></map-marker>
+      </google-map>
+    </div>
+  </div>
+</body>
